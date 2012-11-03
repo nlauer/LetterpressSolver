@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		85192A0E1645DF1C00A18BFD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85192A0D1645DF1C00A18BFD /* UIKit.framework */; };
+		85192A101645DF1C00A18BFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85192A0F1645DF1C00A18BFD /* Foundation.framework */; };
+		85192A121645DF1C00A18BFD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85192A111645DF1C00A18BFD /* CoreGraphics.framework */; };
+		85192A181645DF1C00A18BFD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85192A161645DF1C00A18BFD /* InfoPlist.strings */; };
+		85192A1A1645DF1C00A18BFD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85192A191645DF1C00A18BFD /* main.m */; };
+		85192A1E1645DF1C00A18BFD /* NLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85192A1D1645DF1C00A18BFD /* NLAppDelegate.m */; };
+		85192A201645DF1C00A18BFD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 85192A1F1645DF1C00A18BFD /* Default.png */; };
+		85192A221645DF1C00A18BFD /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85192A211645DF1C00A18BFD /* Default@2x.png */; };
+		85192A241645DF1C00A18BFD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85192A231645DF1C00A18BFD /* Default-568h@2x.png */; };
+		85192A271645DF1C00A18BFD /* NLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85192A261645DF1C00A18BFD /* NLViewController.m */; };
+		85192A2A1645DF1C00A18BFD /* NLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85192A281645DF1C00A18BFD /* NLViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		85192A091645DF1C00A18BFD /* LetterPressSolver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetterPressSolver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85192A0D1645DF1C00A18BFD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		85192A0F1645DF1C00A18BFD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		85192A111645DF1C00A18BFD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		85192A151645DF1C00A18BFD /* LetterPressSolver-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LetterPressSolver-Info.plist"; sourceTree = "<group>"; };
+		85192A171645DF1C00A18BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		85192A191645DF1C00A18BFD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		85192A1B1645DF1C00A18BFD /* LetterPressSolver-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LetterPressSolver-Prefix.pch"; sourceTree = "<group>"; };
+		85192A1C1645DF1C00A18BFD /* NLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLAppDelegate.h; sourceTree = "<group>"; };
+		85192A1D1645DF1C00A18BFD /* NLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLAppDelegate.m; sourceTree = "<group>"; };
+		85192A1F1645DF1C00A18BFD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		85192A211645DF1C00A18BFD /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		85192A231645DF1C00A18BFD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		85192A251645DF1C00A18BFD /* NLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NLViewController.h; sourceTree = "<group>"; };
+		85192A261645DF1C00A18BFD /* NLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NLViewController.m; sourceTree = "<group>"; };
+		85192A291645DF1C00A18BFD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/NLViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		85192A061645DF1C00A18BFD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85192A0E1645DF1C00A18BFD /* UIKit.framework in Frameworks */,
+				85192A101645DF1C00A18BFD /* Foundation.framework in Frameworks */,
+				85192A121645DF1C00A18BFD /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		851929FE1645DF1C00A18BFD = {
+			isa = PBXGroup;
+			children = (
+				85192A131645DF1C00A18BFD /* LetterPressSolver */,
+				85192A0C1645DF1C00A18BFD /* Frameworks */,
+				85192A0A1645DF1C00A18BFD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		85192A0A1645DF1C00A18BFD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85192A091645DF1C00A18BFD /* LetterPressSolver.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		85192A0C1645DF1C00A18BFD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85192A0D1645DF1C00A18BFD /* UIKit.framework */,
+				85192A0F1645DF1C00A18BFD /* Foundation.framework */,
+				85192A111645DF1C00A18BFD /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		85192A131645DF1C00A18BFD /* LetterPressSolver */ = {
+			isa = PBXGroup;
+			children = (
+				85192A1C1645DF1C00A18BFD /* NLAppDelegate.h */,
+				85192A1D1645DF1C00A18BFD /* NLAppDelegate.m */,
+				85192A251645DF1C00A18BFD /* NLViewController.h */,
+				85192A261645DF1C00A18BFD /* NLViewController.m */,
+				85192A281645DF1C00A18BFD /* NLViewController.xib */,
+				85192A141645DF1C00A18BFD /* Supporting Files */,
+			);
+			path = LetterPressSolver;
+			sourceTree = "<group>";
+		};
+		85192A141645DF1C00A18BFD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				85192A151645DF1C00A18BFD /* LetterPressSolver-Info.plist */,
+				85192A161645DF1C00A18BFD /* InfoPlist.strings */,
+				85192A191645DF1C00A18BFD /* main.m */,
+				85192A1B1645DF1C00A18BFD /* LetterPressSolver-Prefix.pch */,
+				85192A1F1645DF1C00A18BFD /* Default.png */,
+				85192A211645DF1C00A18BFD /* Default@2x.png */,
+				85192A231645DF1C00A18BFD /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		85192A081645DF1C00A18BFD /* LetterPressSolver */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85192A2D1645DF1C00A18BFD /* Build configuration list for PBXNativeTarget "LetterPressSolver" */;
+			buildPhases = (
+				85192A051645DF1C00A18BFD /* Sources */,
+				85192A061645DF1C00A18BFD /* Frameworks */,
+				85192A071645DF1C00A18BFD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LetterPressSolver;
+			productName = LetterPressSolver;
+			productReference = 85192A091645DF1C00A18BFD /* LetterPressSolver.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		85192A001645DF1C00A18BFD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = NL;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Nick Lauer";
+			};
+			buildConfigurationList = 85192A031645DF1C00A18BFD /* Build configuration list for PBXProject "LetterPressSolver" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 851929FE1645DF1C00A18BFD;
+			productRefGroup = 85192A0A1645DF1C00A18BFD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				85192A081645DF1C00A18BFD /* LetterPressSolver */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		85192A071645DF1C00A18BFD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85192A181645DF1C00A18BFD /* InfoPlist.strings in Resources */,
+				85192A201645DF1C00A18BFD /* Default.png in Resources */,
+				85192A221645DF1C00A18BFD /* Default@2x.png in Resources */,
+				85192A241645DF1C00A18BFD /* Default-568h@2x.png in Resources */,
+				85192A2A1645DF1C00A18BFD /* NLViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		85192A051645DF1C00A18BFD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				85192A1A1645DF1C00A18BFD /* main.m in Sources */,
+				85192A1E1645DF1C00A18BFD /* NLAppDelegate.m in Sources */,
+				85192A271645DF1C00A18BFD /* NLViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		85192A161645DF1C00A18BFD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85192A171645DF1C00A18BFD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		85192A281645DF1C00A18BFD /* NLViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				85192A291645DF1C00A18BFD /* en */,
+			);
+			name = NLViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		85192A2B1645DF1C00A18BFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		85192A2C1645DF1C00A18BFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		85192A2E1645DF1C00A18BFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LetterPressSolver/LetterPressSolver-Prefix.pch";
+				INFOPLIST_FILE = "LetterPressSolver/LetterPressSolver-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		85192A2F1645DF1C00A18BFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LetterPressSolver/LetterPressSolver-Prefix.pch";
+				INFOPLIST_FILE = "LetterPressSolver/LetterPressSolver-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		85192A031645DF1C00A18BFD /* Build configuration list for PBXProject "LetterPressSolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85192A2B1645DF1C00A18BFD /* Debug */,
+				85192A2C1645DF1C00A18BFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		85192A2D1645DF1C00A18BFD /* Build configuration list for PBXNativeTarget "LetterPressSolver" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85192A2E1645DF1C00A18BFD /* Debug */,
+				85192A2F1645DF1C00A18BFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 85192A001645DF1C00A18BFD /* Project object */;
+}
