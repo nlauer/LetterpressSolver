@@ -7,6 +7,7 @@
 //
 
 #import "NLViewController.h"
+#import "Tesseract.h"
 
 @interface NLViewController ()
 
@@ -18,6 +19,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    Tesseract* tesseract = [[Tesseract alloc] initWithDataPath:@"tessdata" language:@"eng"];
+    [tesseract setVariableValue:@"0123456789" forKey:@"tessedit_char_whitelist"];
+    [tesseract setImage:[UIImage imageNamed:@"letterpress"]];
+    [tesseract recognize];
+    
+    NSLog(@"%@", [tesseract recognizedText]);
 }
 
 - (void)didReceiveMemoryWarning
