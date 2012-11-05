@@ -8,6 +8,7 @@
 
 #import "NLMainScreenViewController.h"
 #import "NLTesseractManager.h"
+#import "NLResultsViewController.h"
 
 #define ASSET_BY_SCREEN_HEIGHT(regular, longScreen) (([[UIScreen mainScreen] bounds].size.height <= 480.0) ? regular : longScreen)
 
@@ -71,13 +72,21 @@
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-	[picker dismissModalViewControllerAnimated:YES];
+    NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] initWithStyle:UITableViewStylePlain];
+    [resultsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:resultsViewController];
+    
+	[picker dismissViewControllerAnimated:YES completion:^{
+        [self presentModalViewController:navigationController animated:YES];
+    }];
+    
     [[NLTesseractManager sharedInstance] getPossibleWordsFromImage:image withCompletion:^(BOOL success, NSArray *words) {
         if (!success) {
             UIAlertView *improperImageAlert = [[UIAlertView alloc] initWithTitle:@"Unrecognized Image" message:@"The image could not be scanned for letters" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
             [improperImageAlert show];
         } else {
             NSLog(@"found words:%@", words);
+            [resultsViewController receiveWords:words];
         }
     }];
 }
