@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>LetterPressSolver.xcscheme</key>
+		<key>LetterpressSolver.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>85192A081645DF1C00A18BFD</key>
+		<key>854F05951647042A00B53AC8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

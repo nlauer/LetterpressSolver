@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "85192A081645DF1C00A18BFD"
-               BuildableName = "LetterPressSolver.app"
-               BlueprintName = "LetterPressSolver"
-               ReferencedContainer = "container:LetterPressSolver.xcodeproj">
+               BlueprintIdentifier = "854F05951647042A00B53AC8"
+               BuildableName = "LetterpressSolver.app"
+               BlueprintName = "LetterpressSolver"
+               ReferencedContainer = "container:LetterpressSolver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85192A081645DF1C00A18BFD"
-            BuildableName = "LetterPressSolver.app"
-            BlueprintName = "LetterPressSolver"
-            ReferencedContainer = "container:LetterPressSolver.xcodeproj">
+            BlueprintIdentifier = "854F05951647042A00B53AC8"
+            BuildableName = "LetterpressSolver.app"
+            BlueprintName = "LetterpressSolver"
+            ReferencedContainer = "container:LetterpressSolver.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85192A081645DF1C00A18BFD"
-            BuildableName = "LetterPressSolver.app"
-            BlueprintName = "LetterPressSolver"
-            ReferencedContainer = "container:LetterPressSolver.xcodeproj">
+            BlueprintIdentifier = "854F05951647042A00B53AC8"
+            BuildableName = "LetterpressSolver.app"
+            BlueprintName = "LetterpressSolver"
+            ReferencedContainer = "container:LetterpressSolver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "85192A081645DF1C00A18BFD"
-            BuildableName = "LetterPressSolver.app"
-            BlueprintName = "LetterPressSolver"
-            ReferencedContainer = "container:LetterPressSolver.xcodeproj">
+            BlueprintIdentifier = "854F05951647042A00B53AC8"
+            BuildableName = "LetterpressSolver.app"
+            BlueprintName = "LetterpressSolver"
+            ReferencedContainer = "container:LetterpressSolver.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

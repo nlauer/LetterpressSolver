@@ -1,14 +1,14 @@
 //
 //  NLAppDelegate.m
-//  LetterPressSolver
+//  LetterpressSolver
 //
-//  Created by Nick Lauer on 12-11-03.
+//  Created by Nick Lauer on 12-11-04.
 //  Copyright (c) 2012 Nick Lauer. All rights reserved.
 //
 
 #import "NLAppDelegate.h"
 
-#import "NLViewController.h"
+#import "NLMainScreenViewController.h"
 
 @implementation NLAppDelegate
 
@@ -16,7 +16,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[NLViewController alloc] initWithNibName:@"NLViewController" bundle:nil];
+    self.viewController = [[NLMainScreenViewController alloc] init];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
