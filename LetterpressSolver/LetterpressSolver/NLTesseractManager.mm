@@ -18,6 +18,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 @implementation NLTesseractManager {
     UIImage *image_;
     TesseractCompletitonBlock completionBlock_;
+    NLResultsViewController *dismissViewOnFailure_;
     TessBaseAPI *tess;
 }
 
@@ -80,10 +81,11 @@ static NLTesseractManager *sharedInstance = NULL;
 #pragma mark -
 #pragma mark Finding Possible Words
 
-- (void)getPossibleWordsFromImage:(UIImage *)image withCompletion:(TesseractCompletitonBlock)completionBlock
+- (void)getPossibleWordsFromImage:(UIImage *)image withCompletion:(TesseractCompletitonBlock)completionBlock andDismissViewController:(NLResultsViewController *)dismissViewController
 {
     image_ = image;
     completionBlock_ = completionBlock;
+    dismissViewOnFailure_ = dismissViewController;
     
     [self performSelectorInBackground:@selector(startOCRInBackground) withObject:nil];
 }
@@ -144,6 +146,7 @@ static NLTesseractManager *sharedInstance = NULL;
     completionBlock_(success, matchedWords);
     completionBlock_ = nil;
     image_ = nil;
+    dismissViewOnFailure_ = nil;
 }
 
 #pragma mark -
@@ -234,12 +237,20 @@ static NLTesseractManager *sharedInstance = NULL;
     BOOL success = (letters.length == 25);
     
     if (!success) {
-        completionBlock_(FALSE, nil);
+        [self performSelectorOnMainThread:@selector(unsuccessfulScan) withObject:nil waitUntilDone:YES];
         completionBlock_ = nil;
         image_ = nil;
+        dismissViewOnFailure_ = nil;
     } else {
         [self getPossibleMatchesFromLettersInString:letters];
     }
+}
+
+- (void)unsuccessfulScan
+{
+    UIAlertView *improperImageAlert = [[UIAlertView alloc] initWithTitle:@"Unrecognized Image" message:@"The image could not be scanned for letters" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    [improperImageAlert show];
+    [dismissViewOnFailure_ dismissModalViewControllerAnimated:YES];
 }
 
 @end

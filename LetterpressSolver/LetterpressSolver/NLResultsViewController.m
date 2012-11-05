@@ -19,10 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Results";
+    self.title = @"Scanning...";
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"backArrow"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
-    [self.navigationItem setLeftBarButtonItem:backButton];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void)backButtonPressed
@@ -39,12 +38,16 @@
 - (void)receiveWords:(NSArray *)words
 {
     _words = words;
-    [self performSelectorOnMainThread:@selector(reloadTableView) withObject:nil waitUntilDone:YES];
-}
-
-- (void)reloadTableView
-{
-    [self.tableView reloadData];
+    self.title = @"Results";
+    
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44.0f, 44.0f)];
+    [backButton setImage:[UIImage imageNamed:@"backArrow"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [self.navigationItem setLeftBarButtonItem:backBarButton];
+    
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - Table view data source
@@ -61,10 +64,14 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setIndentationLevel:3];
+        [cell.textLabel setFont:[UIFont systemFontOfSize:18.0f]];
+        [cell.detailTextLabel setFont:[UIFont systemFontOfSize:18.0f]];
+        [cell.detailTextLabel setTextColor:[UIColor blackColor]];
     }
     
     cell.textLabel.text = [_words objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",[[_words objectAtIndex:indexPath.row] length]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d     ",[[_words objectAtIndex:indexPath.row] length]];
     
     return cell;
 }

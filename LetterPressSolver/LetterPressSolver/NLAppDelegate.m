@@ -14,9 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:80.0f/255.0f green:180.0f/255.0f blue:241.0f/255.0f alpha:1.0f]];
-    NSDictionary *textTitleOptions = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor], UITextAttributeTextColor, [UIColor clearColor], UITextAttributeTextShadowColor, nil];
-    [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:60.0f/255.0f green:150.0f/255.0f blue:241.0f/255.0f alpha:1.0f]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

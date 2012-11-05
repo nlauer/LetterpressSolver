@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NLResultsViewController.h"
 
 typedef void (^TesseractCompletitonBlock)(BOOL success, NSArray *words);
 
@@ -14,6 +15,6 @@ typedef void (^TesseractCompletitonBlock)(BOOL success, NSArray *words);
 
 + (NLTesseractManager *)sharedInstance;
 - (void)setupTesseract;
-- (void)getPossibleWordsFromImage:(UIImage *)image withCompletion:(TesseractCompletitonBlock)completionBlock;
+- (void)getPossibleWordsFromImage:(UIImage *)image withCompletion:(TesseractCompletitonBlock)completionBlock andDismissViewController:(NLResultsViewController *)dismissViewController;
 
 @end
