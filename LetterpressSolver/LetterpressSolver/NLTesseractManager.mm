@@ -11,7 +11,7 @@
 #import "GPUImage.h"
 #include <math.h>
 
-#define MAX_WORD_RETURN_COUNT 200
+#define MAX_WORD_RETURN_COUNT 2500
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
@@ -248,7 +248,7 @@ static NLTesseractManager *sharedInstance = NULL;
 
 - (void)unsuccessfulScan
 {
-    UIAlertView *improperImageAlert = [[UIAlertView alloc] initWithTitle:@"Unrecognized Image" message:@"The image could not be scanned for letters" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+    UIAlertView *improperImageAlert = [[UIAlertView alloc] initWithTitle:@"Unrecognized Image" message:@"The image could not be scanned for letters. Make sure your Letterpress is using the default \"Light\" theme before taking the screenshot." delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
     [improperImageAlert show];
     [dismissViewOnFailure_ dismissModalViewControllerAnimated:YES];
 }

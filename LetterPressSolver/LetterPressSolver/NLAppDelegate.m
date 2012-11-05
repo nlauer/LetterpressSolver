@@ -9,12 +9,16 @@
 #import "NLAppDelegate.h"
 
 #import "NLMainScreenViewController.h"
+#import "NLPurchasesManager.h"
+#import "NLTesseractManager.h"
 
 @implementation NLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:60.0f/255.0f green:150.0f/255.0f blue:241.0f/255.0f alpha:1.0f]];
+    [NLPurchasesManager sharedInstance];
+    [[NLTesseractManager sharedInstance] setupTesseract];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.

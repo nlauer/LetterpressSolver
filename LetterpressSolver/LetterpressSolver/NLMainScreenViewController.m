@@ -31,9 +31,6 @@
 {
     [super viewDidLoad];
     
-    // Initial setup
-    [[NLTesseractManager sharedInstance] setupTesseract];
-    
     imagePickerController_ = [[UIImagePickerController alloc] init];
     [imagePickerController_ setDelegate:self];
     [imagePickerController_ setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];

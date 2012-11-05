@@ -34,7 +34,15 @@
 		85D88F8B1647480500387669 /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D88F891647480500387669 /* backArrow.png */; };
 		85D88F8C1647480500387669 /* backArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85D88F8A1647480500387669 /* backArrow@2x.png */; };
 		85D88F8E164752E700387669 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85D88F8D164752E700387669 /* AssetsLibrary.framework */; };
+		85E77AAD16478C6000B9AFEE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85E77AAC16478C6000B9AFEE /* StoreKit.framework */; };
+		85E77AB3164791CB00B9AFEE /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E77AAE164791CB00B9AFEE /* Icon-Small.png */; };
+		85E77AB4164791CB00B9AFEE /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E77AAF164791CB00B9AFEE /* Icon-Small@2x.png */; };
+		85E77AB5164791CB00B9AFEE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E77AB0164791CB00B9AFEE /* Icon.png */; };
+		85E77AB6164791CB00B9AFEE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E77AB1164791CB00B9AFEE /* Icon@2x.png */; };
+		85E77AB7164791CB00B9AFEE /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 85E77AB2164791CB00B9AFEE /* iTunesArtwork.png */; };
 		85EACCC916472BF900F0AA1F /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85EACCC416472BE600F0AA1F /* libGPUImage.a */; };
+		85ECD5651647A8550039390F /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 85ECD5641647A8550039390F /* IAPHelper.m */; };
+		85ECD5691647A88F0039390F /* NLPurchasesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85ECD5681647A88F0039390F /* NLPurchasesManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		854F05961647042A00B53AC8 /* LetterpressSolver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetterpressSolver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		854F05961647042A00B53AC8 /* LP Cheats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LP Cheats.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		854F059A1647042A00B53AC8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		854F059C1647042A00B53AC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		854F059E1647042A00B53AC8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,7 +106,17 @@
 		85D88F891647480500387669 /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		85D88F8A1647480500387669 /* backArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrow@2x.png"; sourceTree = "<group>"; };
 		85D88F8D164752E700387669 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		85E77AAC16478C6000B9AFEE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		85E77AAE164791CB00B9AFEE /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		85E77AAF164791CB00B9AFEE /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		85E77AB0164791CB00B9AFEE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		85E77AB1164791CB00B9AFEE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		85E77AB2164791CB00B9AFEE /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		85EACCBA16472BE500F0AA1F /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = GPUImage/framework/GPUImage.xcodeproj; sourceTree = "<group>"; };
+		85ECD5631647A8550039390F /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		85ECD5641647A8550039390F /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		85ECD5671647A88F0039390F /* NLPurchasesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLPurchasesManager.h; sourceTree = "<group>"; };
+		85ECD5681647A88F0039390F /* NLPurchasesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLPurchasesManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85E77AAD16478C6000B9AFEE /* StoreKit.framework in Frameworks */,
 				85D88F8E164752E700387669 /* AssetsLibrary.framework in Frameworks */,
 				85EACCC916472BF900F0AA1F /* libGPUImage.a in Frameworks */,
 				854F05C81647058300B53AC8 /* OpenGLES.framework in Frameworks */,
@@ -127,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				85EACCBA16472BE500F0AA1F /* GPUImage.xcodeproj */,
+				85ECD5621647A8350039390F /* In App Purchases */,
 				854F05CB164705F500B53AC8 /* Tesseract */,
 				854F05A01647042A00B53AC8 /* LetterpressSolver */,
 				8599A99A164732B4003097B1 /* Resources */,
@@ -139,7 +159,7 @@
 		854F05971647042A00B53AC8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				854F05961647042A00B53AC8 /* LetterpressSolver.app */,
+				854F05961647042A00B53AC8 /* LP Cheats.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -147,6 +167,7 @@
 		854F05991647042A00B53AC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85E77AAC16478C6000B9AFEE /* StoreKit.framework */,
 				85D88F8D164752E700387669 /* AssetsLibrary.framework */,
 				854F05CD1647065C00B53AC8 /* libtesseract_full.a */,
 				854F05C71647058300B53AC8 /* OpenGLES.framework */,
@@ -202,6 +223,7 @@
 		8599A99A164732B4003097B1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				85E77AA916477C6700B9AFEE /* Icons */,
 				85D88F891647480500387669 /* backArrow.png */,
 				85D88F8A1647480500387669 /* backArrow@2x.png */,
 				8599A9A11647363E003097B1 /* quickImportButton.png */,
@@ -215,6 +237,18 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		85E77AA916477C6700B9AFEE /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				85E77AAE164791CB00B9AFEE /* Icon-Small.png */,
+				85E77AAF164791CB00B9AFEE /* Icon-Small@2x.png */,
+				85E77AB0164791CB00B9AFEE /* Icon.png */,
+				85E77AB1164791CB00B9AFEE /* Icon@2x.png */,
+				85E77AB2164791CB00B9AFEE /* iTunesArtwork.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		85EACCBB16472BE500F0AA1F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +256,17 @@
 				85EACCC616472BE600F0AA1F /* GPUImageTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		85ECD5621647A8350039390F /* In App Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				85ECD5631647A8550039390F /* IAPHelper.h */,
+				85ECD5641647A8550039390F /* IAPHelper.m */,
+				85ECD5671647A88F0039390F /* NLPurchasesManager.h */,
+				85ECD5681647A88F0039390F /* NLPurchasesManager.m */,
+			);
+			name = "In App Purchases";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,7 +287,7 @@
 			);
 			name = LetterpressSolver;
 			productName = LetterpressSolver;
-			productReference = 854F05961647042A00B53AC8 /* LetterpressSolver.app */;
+			productReference = 854F05961647042A00B53AC8 /* LP Cheats.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -312,6 +357,11 @@
 				8599A9B516473F1F003097B1 /* words.plist in Resources */,
 				85D88F8B1647480500387669 /* backArrow.png in Resources */,
 				85D88F8C1647480500387669 /* backArrow@2x.png in Resources */,
+				85E77AB3164791CB00B9AFEE /* Icon-Small.png in Resources */,
+				85E77AB4164791CB00B9AFEE /* Icon-Small@2x.png in Resources */,
+				85E77AB5164791CB00B9AFEE /* Icon.png in Resources */,
+				85E77AB6164791CB00B9AFEE /* Icon@2x.png in Resources */,
+				85E77AB7164791CB00B9AFEE /* iTunesArtwork.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +377,8 @@
 				854F05B41647042A00B53AC8 /* NLMainScreenViewController.m in Sources */,
 				859324271647255100E4C955 /* NLTesseractManager.mm in Sources */,
 				8599A9BB164741B6003097B1 /* NLResultsViewController.m in Sources */,
+				85ECD5651647A8550039390F /* IAPHelper.m in Sources */,
+				85ECD5691647A88F0039390F /* NLPurchasesManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,7 +469,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "LP Cheats";
 				PROVISIONING_PROFILE = "C4C293DB-72FA-4146-AAC0-7D532AD0E517";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C4C293DB-72FA-4146-AAC0-7D532AD0E517";
 				WRAPPER_EXTENSION = app;
@@ -427,8 +479,8 @@
 		854F05BC1647042A00B53AC8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Nick Lauer (84Z834HLVS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nick Lauer (84Z834HLVS)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Nicholas Lauer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Nicholas Lauer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LetterpressSolver/LetterpressSolver-Prefix.pch";
 				HEADER_SEARCH_PATHS = "GPUImage/framework/Source/**";
@@ -438,9 +490,9 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C4C293DB-72FA-4146-AAC0-7D532AD0E517";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C4C293DB-72FA-4146-AAC0-7D532AD0E517";
+				PRODUCT_NAME = "LP Cheats";
+				PROVISIONING_PROFILE = "A4080310-9EE9-4753-B912-2EF0332B9CAC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A4080310-9EE9-4753-B912-2EF0332B9CAC";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

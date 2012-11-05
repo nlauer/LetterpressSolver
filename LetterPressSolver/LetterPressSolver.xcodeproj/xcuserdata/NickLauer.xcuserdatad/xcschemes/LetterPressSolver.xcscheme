@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "854F05951647042A00B53AC8"
-               BuildableName = "LetterpressSolver.app"
+               BuildableName = "LP Cheats.app"
                BlueprintName = "LetterpressSolver"
                ReferencedContainer = "container:LetterpressSolver.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "854F05951647042A00B53AC8"
-            BuildableName = "LetterpressSolver.app"
+            BuildableName = "LP Cheats.app"
             BlueprintName = "LetterpressSolver"
             ReferencedContainer = "container:LetterpressSolver.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "854F05951647042A00B53AC8"
-            BuildableName = "LetterpressSolver.app"
+            BuildableName = "LP Cheats.app"
             BlueprintName = "LetterpressSolver"
             ReferencedContainer = "container:LetterpressSolver.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "854F05951647042A00B53AC8"
-            BuildableName = "LetterpressSolver.app"
+            BuildableName = "LP Cheats.app"
             BlueprintName = "LetterpressSolver"
             ReferencedContainer = "container:LetterpressSolver.xcodeproj">
          </BuildableReference>
