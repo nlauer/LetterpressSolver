@@ -11,7 +11,7 @@
 #import "GPUImage.h"
 #include <math.h>
 
-#define MAX_WORD_RETURN_COUNT 200
+#define MAX_WORD_RETURN_COUNT 5000
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 

@@ -9,7 +9,7 @@
 #import "NLResultsViewController.h"
 #import "NLPurchasesManager.h"
 
-#define NUMBER_OF_REVEALED_WORDS 3
+#define NUMBER_OF_REVEALED_WORDS MIN(3, [_words count])
 #define LOCK_STRING_LENGTH 8
 
 @interface NLResultsViewController ()
@@ -138,7 +138,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([_words count] > 0) {
-        return [self hasAllWordsUnlocked] ? [_words count] : [_words count] - lockedWordsStartIndex_ + NUMBER_OF_REVEALED_WORDS;
+        return [self hasAllWordsUnlocked] ? [_words count] : [_words count] <= 3 ? [_words count] : [_words count] - lockedWordsStartIndex_ + NUMBER_OF_REVEALED_WORDS;
     } else {
         return 0;
     }
@@ -163,17 +163,22 @@
         cell.textLabel.text = word;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d     ",[word length]];
     } else {
+        int index = indexPath.row + lockedWordsStartIndex_ - NUMBER_OF_REVEALED_WORDS;
+        NSString *word;
+        if (index < [_words count] && index >= 0) {
+            word = [_words objectAtIndex:index];
+        }
         if (indexPath.row > 2) {
-            int index = indexPath.row + lockedWordsStartIndex_ - NUMBER_OF_REVEALED_WORDS;
-            if (index < [_words count]) {
-                NSString *word = [_words objectAtIndex:index];
-                cell.textLabel.text = word;
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d     ",[word length]];
-            }
+            cell.textLabel.text = word;
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d     ",[word length]];
         } else {
             [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
             NSString *word = [_words objectAtIndex:indexPath.row];
-            cell.textLabel.text = [word stringByReplacingCharactersInRange:NSMakeRange(NUMBER_OF_REVEALED_WORDS-1, word.length-NUMBER_OF_REVEALED_WORDS+1) withString:@"********"];
+            if ([word length] > 8) {
+                cell.textLabel.text = [word stringByReplacingCharactersInRange:NSMakeRange(NUMBER_OF_REVEALED_WORDS-1, word.length-NUMBER_OF_REVEALED_WORDS+1) withString:@"********"];
+            } else {
+                cell.textLabel.text = word;
+            }
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d     ",[word length]];
         }
     }
@@ -260,6 +265,7 @@
 - (void)updateWordsWithFilter:(NSString *)filterText
 {
     if (filterText) {
+        lockedWordsStartIndex_ = 0;
         _words = [[NSMutableArray alloc] init];
         for (NSString *word in _unfilteredWords) {
             NSString *mutableWord = word;
@@ -276,6 +282,9 @@
             }
             if (shouldAddWord) {
                 [_words addObject:word];
+                if (word.length > LOCK_STRING_LENGTH) {
+                    lockedWordsStartIndex_++;
+                }
             }
         }
     } else {
