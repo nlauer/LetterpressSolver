@@ -17,6 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:60.0f/255.0f green:150.0f/255.0f blue:241.0f/255.0f alpha:1.0f]];
+    [[UISearchBar appearance] setTintColor:[UIColor colorWithRed:60.0f/255.0f green:150.0f/255.0f blue:241.0f/255.0f alpha:1.0f]];
     [NLPurchasesManager sharedInstance];
     [[NLTesseractManager sharedInstance] setupTesseract];
     

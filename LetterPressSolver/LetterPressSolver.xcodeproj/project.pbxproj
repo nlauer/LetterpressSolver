@@ -21,6 +21,7 @@
 		854F05C81647058300B53AC8 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F05C71647058300B53AC8 /* OpenGLES.framework */; };
 		854F05CA164705CE00B53AC8 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 854F05C9164705CE00B53AC8 /* tessdata */; };
 		854F05CE1647065C00B53AC8 /* libtesseract_full.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F05CD1647065C00B53AC8 /* libtesseract_full.a */; };
+		8584B7B2165041C000FF32A4 /* UIImage+RGBA.m in Sources */ = {isa = PBXBuildFile; fileRef = 8584B7B1165041C000FF32A4 /* UIImage+RGBA.m */; };
 		859324271647255100E4C955 /* NLTesseractManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 859324261647255100E4C955 /* NLTesseractManager.mm */; };
 		8599A99D164732C0003097B1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8599A99B164732C0003097B1 /* Default.png */; };
 		8599A99E164732C0003097B1 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8599A99C164732C0003097B1 /* Default@2x.png */; };
@@ -91,6 +92,8 @@
 		854F05C9164705CE00B53AC8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		854F05CC1647060200B53AC8 /* baseapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseapi.h; sourceTree = "<group>"; };
 		854F05CD1647065C00B53AC8 /* libtesseract_full.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtesseract_full.a; sourceTree = "<group>"; };
+		8584B7B0165041C000FF32A4 /* UIImage+RGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RGBA.h"; sourceTree = "<group>"; };
+		8584B7B1165041C000FF32A4 /* UIImage+RGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RGBA.m"; sourceTree = "<group>"; };
 		859324251647255100E4C955 /* NLTesseractManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTesseractManager.h; sourceTree = "<group>"; };
 		859324261647255100E4C955 /* NLTesseractManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NLTesseractManager.mm; sourceTree = "<group>"; };
 		8599A99B164732C0003097B1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -186,6 +189,8 @@
 		854F05A01647042A00B53AC8 /* LetterpressSolver */ = {
 			isa = PBXGroup;
 			children = (
+				8584B7B0165041C000FF32A4 /* UIImage+RGBA.h */,
+				8584B7B1165041C000FF32A4 /* UIImage+RGBA.m */,
 				854F05A91647042A00B53AC8 /* NLAppDelegate.h */,
 				854F05AA1647042A00B53AC8 /* NLAppDelegate.m */,
 				859324251647255100E4C955 /* NLTesseractManager.h */,
@@ -379,6 +384,7 @@
 				8599A9BB164741B6003097B1 /* NLResultsViewController.m in Sources */,
 				85ECD5651647A8550039390F /* IAPHelper.m in Sources */,
 				85ECD5691647A88F0039390F /* NLPurchasesManager.m in Sources */,
+				8584B7B2165041C000FF32A4 /* UIImage+RGBA.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

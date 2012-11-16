@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NLResultsViewController : UITableViewController
+@interface NLResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 - (void)receiveWords:(NSArray *)words;
 

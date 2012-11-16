@@ -121,20 +121,14 @@
                                      UIImage *latestPhoto = [UIImage imageWithCGImage:[representation fullScreenImage]];
                                      
                                      // Do something interesting with the AV asset.
-                                     NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] initWithStyle:UITableViewStylePlain];
+                                     NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] init];
                                      [resultsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
                                      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:resultsViewController];
                                      
                                      [self presentModalViewController:navigationController animated:YES];
                                      
                                      [[NLTesseractManager sharedInstance] getPossibleWordsFromImage:latestPhoto withCompletion:^(BOOL success, NSArray *words) {
-                                         if (!success) {
-                                             UIAlertView *improperImageAlert = [[UIAlertView alloc] initWithTitle:@"Unrecognized Image" message:@"The image could not be scanned for letters" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
-                                             [improperImageAlert show];
-                                             [resultsViewController dismissModalViewControllerAnimated:YES];
-                                         } else {
-                                             [resultsViewController receiveWords:words];
-                                         }
+                                         [resultsViewController performSelectorOnMainThread:@selector(receiveWords:) withObject:words waitUntilDone:YES];
                                      } andDismissViewController:resultsViewController];
                                  }
                              }];
@@ -155,7 +149,7 @@
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] initWithStyle:UITableViewStylePlain];
+    NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] init];
     [resultsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:resultsViewController];
     

@@ -13,7 +13,10 @@
 #define LOCK_STRING_LENGTH 8
 
 @interface NLResultsViewController ()
-@property (strong, nonatomic) NSArray *words;
+@property (strong, nonatomic) NSArray *unfilteredWords;
+@property (strong, nonatomic) NSMutableArray *words;
+@property (strong, nonatomic) UISearchBar *filterSearchBar;
+@property (strong, nonatomic) UITableView *tableView;
 @end
 
 @implementation NLResultsViewController {
@@ -22,7 +25,7 @@
     UIActivityIndicatorView *scanningView_;
 }
 
-@synthesize words = _words;
+@synthesize words = _words, tableView = _tableView, filterSearchBar = _filterSearchBar, unfilteredWords = _unfilteredWords;
 
 - (void)didReceiveMemoryWarning
 {
@@ -33,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     self.title = @"Scanning...";
     lockedWordsStartIndex_ = 0;
     
@@ -44,12 +49,35 @@
         }
     }];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification object:self.view.window];
+    
+    _filterSearchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0)];
+    [_filterSearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    [_filterSearchBar setDelegate:self];
+    [_filterSearchBar setPlaceholder:@"Filter with letters.."];
+    [_filterSearchBar setHidden:YES];
+    
+    [self.view addSubview:_filterSearchBar];
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44.0, self.view.frame.size.width, self.view.frame.size.height-88) style:UITableViewStylePlain];
+    [_tableView setDelegate:self];
+    [_tableView setDataSource:self];
+    [self.view addSubview:_tableView];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     scanningView_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [scanningView_ setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
     [scanningView_ startAnimating];
     [self.view addSubview:scanningView_];
-    
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -75,7 +103,8 @@
 
 - (void)receiveWords:(NSArray *)words
 {
-    _words = words;
+    _unfilteredWords = words;
+    _words = [NSArray arrayWithArray:_unfilteredWords];
     for (NSString *string in _words) {
         if (string.length > LOCK_STRING_LENGTH) {
             lockedWordsStartIndex_++;
@@ -86,6 +115,8 @@
     [scanningView_ stopAnimating];
     [scanningView_ removeFromSuperview];
     scanningView_ = nil;
+    
+    [_filterSearchBar setHidden:NO];
     
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44.0f, 44.0f)];
     [backButton setImage:[UIImage imageNamed:@"backArrow"] forState:UIControlStateNormal];
@@ -133,9 +164,12 @@
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%d     ",[word length]];
     } else {
         if (indexPath.row > 2) {
-            NSString *word = [_words objectAtIndex:indexPath.row + lockedWordsStartIndex_ + NUMBER_OF_REVEALED_WORDS];
-            cell.textLabel.text = word;
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d     ",[word length]];
+            int index = indexPath.row + lockedWordsStartIndex_ - NUMBER_OF_REVEALED_WORDS;
+            if (index < [_words count]) {
+                NSString *word = [_words objectAtIndex:index];
+                cell.textLabel.text = word;
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%d     ",[word length]];
+            }
         } else {
             [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
             NSString *word = [_words objectAtIndex:indexPath.row];
@@ -152,12 +186,102 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (![self hasAllWordsUnlocked] && indexPath.row <= NUMBER_OF_REVEALED_WORDS-1) {
-        for (SKProduct *product in products_) {
-            if ([product.productIdentifier isEqualToString:ALL_WORDS_PURCHASE_IDENTIFIER]) {
-                [[NLPurchasesManager sharedInstance] buyProduct:product];
+        if ([products_ count] == 0) {
+            [[NLPurchasesManager sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+                if (success) {
+                    products_ = products;
+                    for (SKProduct *product in products_) {
+                        if ([product.productIdentifier isEqualToString:ALL_WORDS_PURCHASE_IDENTIFIER]) {
+                            [[NLPurchasesManager sharedInstance] buyProduct:product];
+                        }
+                    }
+                } else {
+                    UIAlertView *failedToLoadProducts = [[UIAlertView alloc] initWithTitle:@"Failed to find Purchases" message:@"Please make sure your internet connection is enabled" delegate:nil cancelButtonTitle:@"Okay" otherButtonTitles:nil];
+                    [failedToLoadProducts show];
+                }
+            }];
+        } else {
+            for (SKProduct *product in products_) {
+                if ([product.productIdentifier isEqualToString:ALL_WORDS_PURCHASE_IDENTIFIER]) {
+                    [[NLPurchasesManager sharedInstance] buyProduct:product];
+                }
             }
         }
     }
+}
+
+#pragma mark -
+#pragma mark Keyboard Methods
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    float keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    [_tableView setFrame:CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, _tableView.frame.size.height - keyboardHeight)];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    float keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size.height;
+    [_tableView setFrame:CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, _tableView.frame.size.height + keyboardHeight)];
+}
+
+
+#pragma mark -
+#pragma mark UISearchBarDelegate
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [self performSelectorInBackground:@selector(updateWordsWithFilter:) withObject:[searchText lowercaseString]];
+}
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:YES animated:YES];
+    return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:NO animated:YES];
+    return YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar setText:@""];
+    [searchBar resignFirstResponder];
+}
+
+- (void)updateWordsWithFilter:(NSString *)filterText
+{
+    if (filterText) {
+        _words = [[NSMutableArray alloc] init];
+        for (NSString *word in _unfilteredWords) {
+            NSString *mutableWord = word;
+            BOOL shouldAddWord = TRUE;
+            for (int i = 0; i < [filterText length]; i++) {
+                NSString *letter = [filterText substringWithRange:NSMakeRange(i, 1)];
+                NSRange letterRange = [mutableWord rangeOfString:letter];
+                if (letterRange.length == 0) {
+                    shouldAddWord = FALSE;
+                    break;
+                } else {
+                    mutableWord = [mutableWord stringByReplacingCharactersInRange:letterRange withString:@""];
+                }
+            }
+            if (shouldAddWord) {
+                [_words addObject:word];
+            }
+        }
+    } else {
+        _words = [NSArray arrayWithArray:_unfilteredWords];
+    }
+    [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
 @end

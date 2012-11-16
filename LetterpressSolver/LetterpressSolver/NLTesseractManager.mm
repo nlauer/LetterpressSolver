@@ -11,7 +11,7 @@
 #import "GPUImage.h"
 #include <math.h>
 
-#define MAX_WORD_RETURN_COUNT 2500
+#define MAX_WORD_RETURN_COUNT 200
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
@@ -141,7 +141,7 @@ static NLTesseractManager *sharedInstance = NULL;
             break;
         }
     }
-    
+
     BOOL success = ([matchedWords count] > 0);
     completionBlock_(success, matchedWords);
     completionBlock_ = nil;
