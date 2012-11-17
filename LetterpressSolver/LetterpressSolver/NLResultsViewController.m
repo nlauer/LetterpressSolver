@@ -8,11 +8,13 @@
 
 #import "NLResultsViewController.h"
 #import "NLPurchasesManager.h"
+#import "NLLetter.h"
 
 #define NUMBER_OF_REVEALED_WORDS MIN(3, [_words count])
 #define LOCK_STRING_LENGTH 8
 
 @interface NLResultsViewController ()
+@property (strong, nonatomic) UIImage *boardImage;
 @property (strong, nonatomic) NSArray *unfilteredWords;
 @property (strong, nonatomic) NSMutableArray *words;
 @property (strong, nonatomic) UISearchBar *filterSearchBar;
@@ -23,9 +25,22 @@
     int lockedWordsStartIndex_;
     NSArray *products_;
     UIActivityIndicatorView *scanningView_;
+    UIImageView *boardImageView_;
+    UIView *scanningOverlay_;
 }
 
 @synthesize words = _words, tableView = _tableView, filterSearchBar = _filterSearchBar, unfilteredWords = _unfilteredWords;
+@synthesize boardImage = _boardImage;
+
+- (id)initWithBoardImage:(UIImage *)boardImage
+{
+    self = [super init];
+    if (self) {
+        _boardImage = boardImage;
+    }
+    
+    return self;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -41,13 +56,15 @@
     self.title = @"Scanning...";
     lockedWordsStartIndex_ = 0;
     
-    [[NLPurchasesManager sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
-        if (success) {
-            products_ = products;
-        } else {
-            NSLog(@"Failed to find products");
-        }
-    }];
+    if (![self hasAllWordsUnlocked]) {
+        [[NLPurchasesManager sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+            if (success) {
+                products_ = products;
+            } else {
+                NSLog(@"Failed to find products");
+            }
+        }];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification object:self.view.window];
@@ -68,8 +85,20 @@
     [self.view addSubview:_tableView];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    scanningView_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [scanningView_ setCenter:CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)];
+    CGPoint centerPoint = CGPointMake(self.view.frame.size.width/2, (self.view.frame.size.height - 44)/2);
+    
+    boardImageView_ = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+    [boardImageView_ setCenter:centerPoint];
+    [boardImageView_ setImage:_boardImage];
+    [boardImageView_ setContentMode:UIViewContentModeScaleAspectFit];
+    [self.view addSubview:boardImageView_];
+    
+    scanningOverlay_ = [[UIView alloc] initWithFrame:self.view.frame];
+    [scanningOverlay_ setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.5]];
+    [self.view addSubview:scanningOverlay_];
+    
+    scanningView_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [scanningView_ setCenter:centerPoint];
     [scanningView_ startAnimating];
     [self.view addSubview:scanningView_];
 }
@@ -78,6 +107,9 @@
 {
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    scanningView_ = nil;
+    boardImageView_ = nil;
+    scanningOverlay_ = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,6 +144,12 @@
     }
     self.title = @"Results";
     
+    [boardImageView_ removeFromSuperview];
+    boardImageView_ = nil;
+    
+    [scanningOverlay_ removeFromSuperview];
+    scanningOverlay_ = nil;
+    
     [scanningView_ stopAnimating];
     [scanningView_ removeFromSuperview];
     scanningView_ = nil;
@@ -131,6 +169,46 @@
 - (BOOL)hasAllWordsUnlocked
 {
     return [[NLPurchasesManager sharedInstance] productPurchased:ALL_WORDS_PURCHASE_IDENTIFIER];
+}
+
+- (void)updateWordsWithFilter:(NSString *)filterText
+{
+    if (filterText) {
+        lockedWordsStartIndex_ = 0;
+        NSMutableArray *words = [[NSMutableArray alloc] init];
+        for (NSString *word in _unfilteredWords) {
+            NSString *mutableWord = word;
+            BOOL shouldAddWord = TRUE;
+            for (int i = 0; i < [filterText length]; i++) {
+                NSString *letter = [filterText substringWithRange:NSMakeRange(i, 1)];
+                NSRange letterRange = [mutableWord rangeOfString:letter];
+                if (letterRange.length == 0) {
+                    shouldAddWord = FALSE;
+                    break;
+                } else {
+                    mutableWord = [mutableWord stringByReplacingCharactersInRange:letterRange withString:@""];
+                }
+            }
+            if (shouldAddWord) {
+                [words addObject:word];
+                if (word.length > LOCK_STRING_LENGTH) {
+                    lockedWordsStartIndex_++;
+                }
+            }
+        }
+        _words = words;
+    } else {
+        _words = [NSArray arrayWithArray:_unfilteredWords];
+    }
+    [self performSelectorOnMainThread:@selector(updateTableViewForNewWords) withObject:nil waitUntilDone:NO];
+}
+
+- (void)updateTableViewForNewWords
+{
+    [_tableView reloadData];
+    if ([_words count] > 0) {
+        [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+    }
 }
 
 #pragma mark - Table view data source
@@ -260,37 +338,6 @@
 {
     [searchBar setText:@""];
     [searchBar resignFirstResponder];
-}
-
-- (void)updateWordsWithFilter:(NSString *)filterText
-{
-    if (filterText) {
-        lockedWordsStartIndex_ = 0;
-        _words = [[NSMutableArray alloc] init];
-        for (NSString *word in _unfilteredWords) {
-            NSString *mutableWord = word;
-            BOOL shouldAddWord = TRUE;
-            for (int i = 0; i < [filterText length]; i++) {
-                NSString *letter = [filterText substringWithRange:NSMakeRange(i, 1)];
-                NSRange letterRange = [mutableWord rangeOfString:letter];
-                if (letterRange.length == 0) {
-                    shouldAddWord = FALSE;
-                    break;
-                } else {
-                    mutableWord = [mutableWord stringByReplacingCharactersInRange:letterRange withString:@""];
-                }
-            }
-            if (shouldAddWord) {
-                [_words addObject:word];
-                if (word.length > LOCK_STRING_LENGTH) {
-                    lockedWordsStartIndex_++;
-                }
-            }
-        }
-    } else {
-        _words = [NSArray arrayWithArray:_unfilteredWords];
-    }
-    [_tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
 }
 
 @end

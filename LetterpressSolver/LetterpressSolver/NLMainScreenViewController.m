@@ -10,6 +10,7 @@
 #import "NLTesseractManager.h"
 #import "NLResultsViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "GPUImage.h"
 
 #define ASSET_BY_SCREEN_HEIGHT(regular, longScreen) (([[UIScreen mainScreen] bounds].size.height <= 480.0) ? regular : longScreen)
 
@@ -120,14 +121,19 @@
                                      ALAssetRepresentation *representation = [alAsset defaultRepresentation];
                                      UIImage *latestPhoto = [UIImage imageWithCGImage:[representation fullScreenImage]];
                                      
-                                     // Do something interesting with the AV asset.
-                                     NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] init];
+                                     float screenHeight = [[UIScreen mainScreen] bounds].size.height;
+                                     // Crop the image to only include the board of letters
+                                     GPUImageCropFilter *cropFilter = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, (screenHeight-320.0f)/screenHeight, 1, 320.0/screenHeight)];
+                                     UIImage *croppedImage = [cropFilter imageByFilteringImage:latestPhoto];
+                                     
+                                     NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] initWithBoardImage:croppedImage];
+                                     
                                      [resultsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
                                      UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:resultsViewController];
                                      
                                      [self presentModalViewController:navigationController animated:YES];
                                      
-                                     [[NLTesseractManager sharedInstance] getPossibleWordsFromImage:latestPhoto withCompletion:^(BOOL success, NSArray *words) {
+                                     [[NLTesseractManager sharedInstance] getPossibleWordsFromImage:croppedImage withCompletion:^(BOOL success, NSArray *words) {
                                          [resultsViewController performSelectorOnMainThread:@selector(receiveWords:) withObject:words waitUntilDone:YES];
                                      } andDismissViewController:resultsViewController];
                                  }
@@ -149,13 +155,18 @@
 #pragma mark UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] init];
+    float screenHeight = [[UIScreen mainScreen] bounds].size.height;
+    // Crop the image to only include the board of letters
+    GPUImageCropFilter *cropFilter = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, (screenHeight-320.0f)/screenHeight, 1, 320.0/screenHeight)];
+    UIImage *croppedImage = [cropFilter imageByFilteringImage:image];
+    
+    NLResultsViewController *resultsViewController = [[NLResultsViewController alloc] initWithBoardImage:croppedImage];
     [resultsViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:resultsViewController];
     
 	[picker dismissViewControllerAnimated:YES completion:^{
         [self presentViewController:navigationController animated:YES completion:^{
-            [[NLTesseractManager sharedInstance] getPossibleWordsFromImage:image withCompletion:^(BOOL success, NSArray *words) {
+            [[NLTesseractManager sharedInstance] getPossibleWordsFromImage:croppedImage withCompletion:^(BOOL success, NSArray *words) {
                 [resultsViewController performSelectorOnMainThread:@selector(receiveWords:) withObject:words waitUntilDone:YES];
             } andDismissViewController:resultsViewController];
         }];

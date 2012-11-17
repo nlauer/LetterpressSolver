@@ -10,12 +10,15 @@
 #import "baseapi.h"
 #import "GPUImage.h"
 #include <math.h>
+#import "UIImage+RGBA.h"
+#import "NLLetter.h"
 
-#define MAX_WORD_RETURN_COUNT 5000
+#define MAX_WORD_RETURN_COUNT 20
 
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 
 @implementation NLTesseractManager {
+    NSArray *letters_;
     UIImage *image_;
     TesseractCompletitonBlock completionBlock_;
     NLResultsViewController *dismissViewOnFailure_;
@@ -76,6 +79,22 @@ static NLTesseractManager *sharedInstance = NULL;
 	tess->SimpleInit([dataPath cStringUsingEncoding:NSUTF8StringEncoding],  // Path to tessdata-no ending /.
 					 "eng",  // ISO 639-3 string or NULL.
 					 false);
+}
+
+#pragma mark -
+#pragma mark Finding Colours
+
+- (NSArray *)getColorsFromImage:(UIImage *)image
+{
+    NSMutableArray *colors = [[NSMutableArray alloc] initWithCapacity:25];
+    int stepSize = image.size.width/5;
+    for (int i = 0; i < 5; i++) {
+        for (int k = 0; k < 5; k++) {
+            [colors addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:1 + stepSize*k], [NSNumber numberWithInt:1 + stepSize*i], nil]];
+        }
+    }
+    NSArray *foundColorsArray = [image getColorsAtPoints:colors];
+    return foundColorsArray;
 }
 
 #pragma mark -
@@ -221,10 +240,6 @@ static NLTesseractManager *sharedInstance = NULL;
 
 - (void)startOCRInBackground
 {
-    // Crop the image to only include the board of letters
-    GPUImageCropFilter *cropFilter = [[GPUImageCropFilter alloc] initWithCropRegion:CGRectMake(0, 0.3, 1, 0.7)];
-    image_ = [cropFilter imageByFilteringImage:image_];
-    
     // Resize the image for OCR
 	image_ = [self resizeImage:image_];
     
@@ -242,6 +257,19 @@ static NLTesseractManager *sharedInstance = NULL;
         image_ = nil;
         dismissViewOnFailure_ = nil;
     } else {
+        // Creat the NLLetter objects that have the letter and its color
+        NSArray *colors = [self getColorsFromImage:image_];
+        NSMutableArray *lettersArray = [[NSMutableArray alloc] initWithCapacity:[colors count]];
+        
+        for (int i = 0; i < [colors count]; i++) {
+            NLLetter *letter = [[NLLetter alloc] init];
+            letter.color = [colors objectAtIndex:i];
+            letter.letter = [letters substringWithRange:NSMakeRange(i, 1)];
+            [lettersArray addObject:letter];
+        }
+        
+        letters_ = lettersArray;
+        
         [self getPossibleMatchesFromLettersInString:letters];
     }
 }

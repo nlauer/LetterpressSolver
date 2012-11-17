@@ -11,5 +11,6 @@
 @interface NLResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 - (void)receiveWords:(NSArray *)words;
+- (id)initWithBoardImage:(UIImage *)boardImage;
 
 @end

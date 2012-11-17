@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		851BBE1B165723820040859A /* UIColor+Equal.m in Sources */ = {isa = PBXBuildFile; fileRef = 851BBE1A165723820040859A /* UIColor+Equal.m */; };
+		851BBE1E16572A390040859A /* NLLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 851BBE1D16572A390040859A /* NLLetter.m */; };
 		854F059B1647042A00B53AC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F059A1647042A00B53AC8 /* UIKit.framework */; };
 		854F059D1647042A00B53AC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F059C1647042A00B53AC8 /* Foundation.framework */; };
 		854F059F1647042A00B53AC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 854F059E1647042A00B53AC8 /* CoreGraphics.framework */; };
@@ -71,6 +73,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		851BBE19165723820040859A /* UIColor+Equal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Equal.h"; sourceTree = "<group>"; };
+		851BBE1A165723820040859A /* UIColor+Equal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Equal.m"; sourceTree = "<group>"; };
+		851BBE1C16572A390040859A /* NLLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLLetter.h; sourceTree = "<group>"; };
+		851BBE1D16572A390040859A /* NLLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLLetter.m; sourceTree = "<group>"; };
 		854F05961647042A00B53AC8 /* LP Cheats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LP Cheats.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		854F059A1647042A00B53AC8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		854F059C1647042A00B53AC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,10 +98,10 @@
 		854F05C9164705CE00B53AC8 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		854F05CC1647060200B53AC8 /* baseapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = baseapi.h; sourceTree = "<group>"; };
 		854F05CD1647065C00B53AC8 /* libtesseract_full.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtesseract_full.a; sourceTree = "<group>"; };
-		8584B7B0165041C000FF32A4 /* UIImage+RGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RGBA.h"; sourceTree = "<group>"; };
-		8584B7B1165041C000FF32A4 /* UIImage+RGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RGBA.m"; sourceTree = "<group>"; };
-		859324251647255100E4C955 /* NLTesseractManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLTesseractManager.h; sourceTree = "<group>"; };
-		859324261647255100E4C955 /* NLTesseractManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NLTesseractManager.mm; sourceTree = "<group>"; };
+		8584B7B0165041C000FF32A4 /* UIImage+RGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+RGBA.h"; path = "LetterpressSolver/UIImage+RGBA.h"; sourceTree = "<group>"; };
+		8584B7B1165041C000FF32A4 /* UIImage+RGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+RGBA.m"; path = "LetterpressSolver/UIImage+RGBA.m"; sourceTree = "<group>"; };
+		859324251647255100E4C955 /* NLTesseractManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NLTesseractManager.h; path = LetterpressSolver/NLTesseractManager.h; sourceTree = "<group>"; };
+		859324261647255100E4C955 /* NLTesseractManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NLTesseractManager.mm; path = LetterpressSolver/NLTesseractManager.mm; sourceTree = "<group>"; };
 		8599A99B164732C0003097B1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8599A99C164732C0003097B1 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8599A99F16473377003097B1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -145,12 +151,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		851BBE17165720470040859A /* WordsLetterAndColors */ = {
+			isa = PBXGroup;
+			children = (
+				859324251647255100E4C955 /* NLTesseractManager.h */,
+				859324261647255100E4C955 /* NLTesseractManager.mm */,
+				8584B7B0165041C000FF32A4 /* UIImage+RGBA.h */,
+				8584B7B1165041C000FF32A4 /* UIImage+RGBA.m */,
+				851BBE19165723820040859A /* UIColor+Equal.h */,
+				851BBE1A165723820040859A /* UIColor+Equal.m */,
+				851BBE1C16572A390040859A /* NLLetter.h */,
+				851BBE1D16572A390040859A /* NLLetter.m */,
+			);
+			name = WordsLetterAndColors;
+			sourceTree = "<group>";
+		};
 		854F058B1647042A00B53AC8 = {
 			isa = PBXGroup;
 			children = (
 				85EACCBA16472BE500F0AA1F /* GPUImage.xcodeproj */,
 				85ECD5621647A8350039390F /* In App Purchases */,
 				854F05CB164705F500B53AC8 /* Tesseract */,
+				851BBE17165720470040859A /* WordsLetterAndColors */,
 				854F05A01647042A00B53AC8 /* LetterpressSolver */,
 				8599A99A164732B4003097B1 /* Resources */,
 				854F05A11647042A00B53AC8 /* Supporting Files */,
@@ -189,12 +211,8 @@
 		854F05A01647042A00B53AC8 /* LetterpressSolver */ = {
 			isa = PBXGroup;
 			children = (
-				8584B7B0165041C000FF32A4 /* UIImage+RGBA.h */,
-				8584B7B1165041C000FF32A4 /* UIImage+RGBA.m */,
 				854F05A91647042A00B53AC8 /* NLAppDelegate.h */,
 				854F05AA1647042A00B53AC8 /* NLAppDelegate.m */,
-				859324251647255100E4C955 /* NLTesseractManager.h */,
-				859324261647255100E4C955 /* NLTesseractManager.mm */,
 				854F05B21647042A00B53AC8 /* NLMainScreenViewController.h */,
 				854F05B31647042A00B53AC8 /* NLMainScreenViewController.m */,
 				8599A9B9164741B5003097B1 /* NLResultsViewController.h */,
@@ -385,6 +403,8 @@
 				85ECD5651647A8550039390F /* IAPHelper.m in Sources */,
 				85ECD5691647A88F0039390F /* NLPurchasesManager.m in Sources */,
 				8584B7B2165041C000FF32A4 /* UIImage+RGBA.m in Sources */,
+				851BBE1B165723820040859A /* UIColor+Equal.m in Sources */,
+				851BBE1E16572A390040859A /* NLLetter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

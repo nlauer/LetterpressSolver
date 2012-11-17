@@ -7,10 +7,11 @@
 //
 
 #import "UIImage+RGBA.h"
+#import "UIColor+Equal.h"
 
 @implementation UIImage (RGBA)
 
-- (NSArray*)getColorsAtPoints:(NSArray *)points
+- (NSArray *)getColorsAtPoints:(NSArray *)points
 {
     if ([points count] == 0) {
         return nil;
@@ -56,8 +57,6 @@
     }
     
     free(rawData);
-    
-    NSLog(@"result:%@", result);
     return result;
 }
 
